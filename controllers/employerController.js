@@ -19,7 +19,6 @@ exports.employerSignUp = (req, res) => {
         employerName: req.body.employerName,
         email: req.body.email,
         password: req.body.password,
-        gigs:[]
     }
     // validating the employer input
     joi.validate({employerName: data.employerName, email: data.email, password: data.password}, schema, function (err) {
@@ -97,22 +96,4 @@ exports.loginUser = function (req, res) {
     catch (exception) {
         console.log(exception);
     }
-}
-exports.employerPostGig = (req, res) => {
-    var data = {
-        gigs: [],
-        employer: req.body.employer,
-        time: Date.now()
-    }
-    try {
-        return service.employerAddGig(req, res, data)
-    }   catch(exception) {
-        console.log("Error : "+exception);
-    }
-
-}
-
-exports.getEmployerById = function (req, res){
-    var id = req.params.id;
-    return service.getEmployerById(req, res, id);
 }
